@@ -1,0 +1,26 @@
+# Inspired from https://github.com/kind-ci/examples/blob/master/gitlab/kind-config.yaml
+# and https://kind.sigs.k8s.io/docs/user/private-registries/
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: "${CLUSTER_NAME}"
+networking:
+  apiServerAddress: "${API_SERVER_ADDRESS}"
+  apiServerPort: ${API_SERVER_PORT}
+nodes:
+  - role: control-plane
+    image: "kindest/node:${KINDEST_NODE_IMAGE_TAG}"
+    extraMounts:
+      # Propagate "docker login" credentials
+      - containerPath: /var/lib/kubelet/config.json
+        hostPath: "${HOME}/.docker/config.json"
+      # Propagate (hopefully) images cache
+      - containerPath: /var/lib/docker/image/overlay2
+        hostPath: /var/lib/docker/image/overlay2
+kubeadmConfigPatchesJSON6902:
+  - group: kubeadm.k8s.io
+    version: v1beta2
+    kind: ClusterConfiguration
+    patch: |
+      - op: add
+        path: /apiServer/certSANs/-
+        value: docker
