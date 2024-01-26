@@ -88,3 +88,13 @@ curl -k https://127.0.0.1:8443
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 ```
+
+## Add Extra Nodes
+
+Define the environment variable :
+```bash
+CLUSTER_EXTRA_NODES=" #Mind the EOL
+  - role: worker
+  - role: worker
+  - role: worker"
+```
