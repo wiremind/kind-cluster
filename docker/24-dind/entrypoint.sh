@@ -19,6 +19,11 @@ if [ -n "$DOCKER_USER" ] && [ -n "$DOCKER_PASSWORD" ]; then
     docker login -u "${DOCKER_USER}" -p "${DOCKER_PASSWORD}"
 fi
 
+if [ -n "$CI_REGISTRY" ] && [ -n "$CI_REGISTRY_USER" ] && [ -n "$CI_REGISTRY_PASSWORD" ]; then
+    echo "Logging to ${CI_REGISTRY} with user ${CI_REGISTRY_USER}"
+    docker login $CI_REGISTRY -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}"
+fi
+
 if [ -z "$CLUSTER_NAME" ]; then
     export CLUSTER_NAME="kind"
     echo "Defaulting cluster name to ${CLUSTER_NAME}"

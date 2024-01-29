@@ -16,7 +16,8 @@ nodes:
       # Propagate (hopefully) images cache
       - containerPath: /var/lib/docker/image/overlay2
         hostPath: /var/lib/docker/image/overlay2
-      #Extra Nodes (if needed) ${CLUSTER_EXTRA_NODES}
+      #Extra Nodes (if needed) 
+${CLUSTER_EXTRA_NODES}
 kubeadmConfigPatchesJSON6902:
   - group: kubeadm.k8s.io
     version: v1beta2
