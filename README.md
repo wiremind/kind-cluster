@@ -93,8 +93,13 @@ curl -k https://127.0.0.1:8443
 
 Define the environment variable :
 ```bash
-CLUSTER_EXTRA_NODES=" #Mind the EOL
+CLUSTER_EXTRA_NODES="
   - role: worker
   - role: worker
   - role: worker"
 ```
+
+## Private Registry
+
+An access to a private registry is possible with the environment variables :` $CI_REGISTRY` `$CI_REGISTRY_USER` and `$CI_REGISTRY_PASSWORD`.
+For GitLab, the variables are predifined.
