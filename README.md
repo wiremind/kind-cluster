@@ -101,5 +101,7 @@ CLUSTER_EXTRA_NODES="
 
 ## Private Registry
 
-An access to a private registry is possible with the environment variables :` $CI_REGISTRY` `$CI_REGISTRY_USER` and `$CI_REGISTRY_PASSWORD`.
-For GitLab, the variables are predifined.
+An access to GitLab private registry is possible with the environment variables :`$CI_REGISTRY` `$CI_REGISTRY_USER` and `$CI_REGISTRY_PASSWORD`.
+the variables are predefined.
+
+For a custom private registry, an access is possible by providing the variables : `$CI_CUSTOM_REGISTRY` `$CI_CUSTOM_REGISTRY_USER` and `$CI_CUSTOM_REGISTRY_PASSWORD`.
