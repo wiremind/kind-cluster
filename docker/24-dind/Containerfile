@@ -2,16 +2,18 @@ FROM docker:24.0.8-dind as build
 
 ARG KIND_VERSION=v0.20.0
 
-RUN apk add --no-cache go=1.21.6-r0 \
+RUN apk add --no-cache \
+    go~=1.21 \
     && go install "sigs.k8s.io/kind@${KIND_VERSION}"
 
 FROM docker:24.0.8-dind as base
 
 COPY --from=build /root/go/bin/kind /usr/local/bin/kind
 
-RUN apk add --no-cache ca-certificates=20230506-r0 \
-    gettext=0.22.3-r0 \
-    bash=5.2.21-r0
+RUN apk add --no-cache \
+    ca-certificates~=20230506 \
+    gettext~=0.22 \
+    bash~=5.2
 
 WORKDIR /app
 
